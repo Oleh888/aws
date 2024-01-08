@@ -53,17 +53,3 @@ resource "aws_instance" "private_instance" {
     Environment = var.environment
   }
 }
-
-resource "aws_eip" "nat_eip" {
-  depends_on = [module.vpc.igw_id]
-}
-
-resource "aws_nat_gateway" "nat_gw" {
-  subnet_id     = element(module.vpc.private_subnets, 0)
-  allocation_id = aws_eip.nat_eip.id
-
-  tags = {
-    Name        = "nat-gateway-${var.environment}"
-    Environment = var.environment
-  }
-}
