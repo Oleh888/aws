@@ -17,11 +17,3 @@ variable "public_subnets_cidr" {
 variable "private_subnets_cidr" {
   default = "10.0.101.0/24"
 }
-
-variable "instance_type" {
-  default = "t3.micro"
-}
-
-locals {
-  availability_zone = "${var.aws_region}a"
-}
